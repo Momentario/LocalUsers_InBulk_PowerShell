@@ -1,8 +1,8 @@
 # List of full names to process
-$fullNames = @(
-    "TEST1 Name",
-    "Test2 EMAN"
-)
+$users = @{
+    "Med Momentario" = "Description can be added right here"
+    "TESTING GNITSET" = "Description is full now"
+}
 
 # Check if running as Administrator
 $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
@@ -37,9 +37,10 @@ function Generate-Password {
     }
 }
 
-foreach ($fullName in $fullNames) {
+foreach ($fullName in $users.Keys) {
     $username = Generate-Username $fullName
     $password = Generate-Password
+    $description = $users[$fullName]
     $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
 
     try {
@@ -47,6 +48,7 @@ foreach ($fullName in $fullNames) {
         New-LocalUser -Name $username `
                       -Password $securePassword `
                       -FullName $fullName `
+                      -Description $description `
                       -PasswordNeverExpires
 
         # Add to Users and Administrators groups
@@ -55,6 +57,7 @@ foreach ($fullName in $fullNames) {
 
         # Output result
         Write-Host "Created user: $username" -ForegroundColor Green
+        Write-Host "Description: $description" -ForegroundColor Cyan
         Write-Host "Password: $password" -ForegroundColor Yellow
     }
     catch {
