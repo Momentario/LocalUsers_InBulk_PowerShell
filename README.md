@@ -5,6 +5,7 @@ A PowerShell script for creating local Windows user accounts with automatically 
 ## Features
 
 - **Automatic Username Generation**: Creates usernames in `firstname.lastname` format
+- **Custom User Descriptions**: Add personalized descriptions for each user account
 - **Secure Password Generation**: Generates 13-character passwords with complexity requirements
 - **Administrator Privilege Check**: Ensures script runs with proper permissions
 - **Group Membership**: Adds users to both Users and Administrators groups
@@ -43,15 +44,17 @@ A PowerShell script for creating local Windows user accounts with automatically 
 
 ### Adding Users
 
-Edit the `$fullNames` array in the script:
+Edit the `$users` hashtable in the script:
 
 ```powershell
-$fullNames = @(
-    "Firstname Lastname",
-    "Test1 1tset",
-    "Your Name Here"
-)
+$users = @{
+    "Firstname Lastname" = "Custom description here"
+}
 ```
+
+Each user entry consists of:
+- **Key**: Full name of the user
+- **Value**: Description that will be added to the user account
 
 ### Password Settings
 
@@ -93,6 +96,7 @@ The script handles common errors:
 ## Output
 
 - ✅ **Green**: Successful user creation
+- 🔷 **Cyan**: User descriptions
 - 🔐 **Yellow**: Generated passwords
 - ❌ **Red**: Error messages
 
