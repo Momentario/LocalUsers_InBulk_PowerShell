@@ -23,14 +23,20 @@ A PowerShell script for creating local Windows user accounts with automatically 
    - Right-click on PowerShell in Start menu
    - Select "Run as Administrator"
 
-2. **Navigate to script directory**
+2. **Set execution policy (if needed)**
+   ```powershell
+   Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+   ```
+   *Note: This temporarily allows script execution for the current PowerShell session only*
+
+3. **Navigate to script directory**
    ```powershell
    cd C:\path\to\your\script
    ```
 
-3. **Execute the script**
+4. **Execute the script**
    ```powershell
-   .\Script.ps1
+   .\ScriptV1.ps1
    ```
 
 ## Configuration
