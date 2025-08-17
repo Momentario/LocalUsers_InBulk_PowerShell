@@ -1,4 +1,4 @@
-# PowerShell User Creation Script
+# PowerShell User Creation Script - Windows Environment
 
 A PowerShell script for creating local Windows user accounts with automatically generated usernames and secure passwords.
 
